@@ -1,0 +1,10 @@
+// sel a or m
+// load = notaorc*a
+CHIP ControlOfAOrM{
+	IN aorc, a;
+	OUT sel;
+
+	PARTS:
+	Not(in=aorc, out=notaorc);
+	And(a=aorc, b=a, out=sel);
+}

@@ -1,0 +1,34 @@
+// PC control
+CHIP ControlOfPC {
+	IN j[3], zr, ng, reset, aorc;
+	OUT  PCload,PCinc,PCreset;
+	PARTS:
+	And(a=reset,     b = true,  out = PCreset);
+	Xor(a=OutPCload, b = true,  out=PCinc);
+
+	Not(in=j[0], out=notj1);
+	Not(in=j[1], out=notj2);
+	Not(in=j[2], out=notj3);
+
+	And(a=j[0], b=true, out=j1);
+	And(a=j[1], b=true, out=j2);
+	And(a=j[2], b=true, out=j3);
+
+	Not(in=ng, out=notng);
+	Not(in=zr, out=notzr);
+	Or(a=zr, b=ng, out=zrng);
+
+	And5(a[0]=notj1,a[1]=notj2, a[2]=j3,    a[3]=notng, a[4]=notzr, out=out1);
+	And5(a[0]=notj1,a[1]=j2,    a[2]=notj3, a[3]=zr,    a[4]=true,  out=out2);
+	And5(a[0]=notj1,a[1]=j2,    a[2]=j3,    a[3]=notng, a[4]=true,  out=out3);
+	And5(a[0]=j1,   a[1]=notj2, a[2]=notj3, a[3]=ng,    a[4]=true,  out=out4);
+	And5(a[0]=j1,   a[1]=notj2, a[2]=j3,    a[3]=notzr, a[4]=true,  out=out5);
+	And5(a[0]=j1,   a[1]=j2,    a[2]=notj3, a[3]=zrng,  a[4]=true,  out=out6);
+	And5(a[0]=j1,   a[1]=j2,    a[2]=j3,    a[3]=true,  a[4]=true,  out=out7);
+
+ 	Or8Way(in[0]=out1, in[1]=out2, in[2]=out3, in[3]=out4, in[4]=out5, in[5]=out6, in[6]=out7, in[7]=false, out=OutPCloadWithoutAorC);
+        // A instruction do not load
+	And(a=OutPCloadWithoutAorC, b=aorc, out=OutPCload);
+
+	And(a=OutPCload, b=true, out=PCload);	
+}

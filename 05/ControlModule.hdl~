@@ -1,0 +1,24 @@
+CHIP ControlModule{
+	IN a, aorc, c[6], d[3], j[3], zr, ng, reset;
+	OUT MuxSelBeforeARegister, ARegisterLoad, AorMSel, DRegisterLoad, ALUzx, ALUnx, ALUzy, ALUny, ALUf, ALUno;
+	
+	PARTS:
+	//A or C　instruction
+	And(a=aorc,b=true,out=MuxSelBeforeARegister);
+	
+	And(a = d[1],b = true, out = ARegisterLoad );
+	And(a = a,   b = true, out = AorMSel);
+	And(a = d[1],b = true, out = DRegisterLoad );
+	
+	
+	And(a = c[0],b = true, out = ALUzx );
+	And(a = c[1],b = true, out = ALUnx );
+	And(a = c[2],b = true, out = ALUzy );
+	And(a = c[3],b = true, out = ALUny );
+	And(a = c[4],b = true, out = ALUf );
+	And(a = c[5],b = true, out = ALUno );
+	
+	
+	
+}
+

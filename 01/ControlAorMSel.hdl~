@@ -1,0 +1,9 @@
+//A or M select
+//sel = aorc*a
+CHIP ControlAorMSel{
+	IN aorc,a;
+	OUT sel;
+	
+	PARTS:
+	And(a=aorc, b=a, out=sel);
+}

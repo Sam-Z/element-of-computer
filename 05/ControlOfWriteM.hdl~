@@ -1,0 +1,7 @@
+//control of write m
+CHIP ControlOfWriteM{
+	IN aorc, d3;
+	OUT writeM;
+	PARTS:
+	And(a=aorc, b=d3, out=writeM);
+}

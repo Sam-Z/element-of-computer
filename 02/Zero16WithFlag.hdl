@@ -1,0 +1,10 @@
+/* Zero with flag
+ * if n == 1, set out=!out
+ */
+ CHIP Zero16WithFlag{
+ IN  in[16], z;
+ OUT out[16];
+ 
+ PARTS:
+   Mux16(a=in, b[0..15]=false, sel=z, out=out);
+ }

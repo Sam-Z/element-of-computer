@@ -1,0 +1,6 @@
+CHIP ControlModuleOfWriteM {
+	IN  d2, aorc;
+	OUT  WriteM;
+	PARTS:
+	And(a=d2, b=aorc, out=WriteM);
+}

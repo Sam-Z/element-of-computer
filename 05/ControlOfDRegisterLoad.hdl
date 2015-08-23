@@ -1,0 +1,10 @@
+// load D register
+// load = aorc*d2
+CHIP ControlOfDRegisterLoad {
+	IN aorc, d2;
+	OUT load;
+
+	PARTS:
+	And(a=aorc, b=d2, out=load);
+}
+

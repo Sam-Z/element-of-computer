@@ -1,0 +1,13 @@
+// load A register
+// load = not(aorc)+aorc*d1
+CHIP ControlOfARegisterLoad {
+	IN aorc, d1;
+	OUT load;
+
+	PARTS:
+	xor(a=aorc, b=true, out=notaorc);
+	and(a=aorc, b=d1, out=andout);
+	or(a=notaorc, b=andout, out = load);	
+
+}
+

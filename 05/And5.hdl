@@ -1,0 +1,11 @@
+CHIP And5 {
+	IN  a[5];
+	OUT out;
+	
+	PARTS:
+	And(a=a[0], b=a[1], out=out1);
+	And(a=a[2], b=a[3], out=out2);
+	And(a=out1, b=out2, out=out3);
+	And(a=a[4], b=out3, out=out);
+
+}

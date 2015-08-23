@@ -1,0 +1,42 @@
+CHIP DecodeModule{
+	IN instruction[16];
+	OUT c[6],d1,d2,d3,j[3],v[15],a, aorc;
+	
+	PARTS:
+	And(a=instruction[11],b=true,out=c[0]);
+	And(a=instruction[10],b=true,out=c[1]);
+	And(a=instruction[9],b=true,out=c[2]);
+	And(a=instruction[8],b=true,out=c[3]);
+	And(a=instruction[7],b=true,out=c[4]);
+	And(a=instruction[6],b=true,out=c[5]);
+
+	And(a=instruction[5],b=true,out=d1);
+	And(a=instruction[4],b=true,out=d2);
+	And(a=instruction[3],b=true,out=d3);
+	
+	And(a=instruction[2],b=true,out=j[0]);
+	And(a=instruction[1],b=true,out=j[1]);
+	And(a=instruction[0],b=true,out=j[2]);
+
+	And(a=instruction[14], b=true, out=v[14]);
+	And(a=instruction[13], b=true, out=v[13]);
+	And(a=instruction[12], b=true, out=v[12]);
+	And(a=instruction[11], b=true, out=v[11]);
+	And(a=instruction[10], b=true, out=v[10]);
+	And(a=instruction[9], b=true, out=v[9]);
+	And(a=instruction[8], b=true, out=v[8]);
+	And(a=instruction[7], b=true, out=v[7]);
+	And(a=instruction[6], b=true, out=v[6]);
+	And(a=instruction[5], b=true, out=v[5]);
+	And(a=instruction[4], b=true, out=v[4]);
+	And(a=instruction[3], b=true, out=v[3]);
+	And(a=instruction[2], b=true, out=v[2]);
+	And(a=instruction[1], b=true, out=v[1]);
+	And(a=instruction[0], b=true, out=v[0]);
+	
+	And(a=instruction[12], b=true, out=a);
+
+	And(a=instruction[15], b=true, out=aorc);
+
+
+}

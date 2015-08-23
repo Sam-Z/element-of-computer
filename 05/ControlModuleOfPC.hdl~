@@ -1,0 +1,25 @@
+
+CHIP ControlModuleOfPC {
+	IN j[3], zr, ng, reset, d2;
+	OUT  PCload,PCinc,PCreset;
+	PARTS:
+	And(a=reset, b = true, out = PCreset);
+	Xor(a=OutPCload, b = true,  out=PCinc);
+
+	Not(in=j[0], out=notj0);
+	Not(in=j[1], out=notj1);
+	Not(in=j[2], out=notj2);
+	Not(in=ng, out=notng);
+	Not(in=zr, out=notzr);
+	
+	And5(a[0]=notj0,a[1]=notj1, a[2]=j[2], a[3]=notng, a[4]=notzr, out=out1);
+	And5(a[0]=notj0,a[1]=j[1], a[2]=notj2, a[3]=zr, a[4]=true,     out=out2);
+	And5(a[0]=notj0,a[1]=j[1], a[2]=j[2], a[3]=notng, a[4]=true,    out=out3);
+	And5(a[0]=j[0],a[1]=notj1, a[2]=notj2, a[3]=ng, a[4]=true,    out=out4);
+	And5(a[0]=j[0],a[1]=notj1, a[2]=notj2, a[3]=notzr, a[4]=true, out=out5);
+	And5(a[0]=j[0],a[1]=j[1],  a[2]=j[2],  a[3]=true, a[4]=true, out=out6);
+
+ 	 Or8Way(in[0]=out1, in[1]=out2, in[2]=out3, in[3]=out4, in[4]=out5, in[5]=out6, in[6..7]=false, out=OutPCload);
+	And(a=OutPCload, b=true, out=PCload);
+	
+}

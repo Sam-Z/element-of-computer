@@ -1,0 +1,9 @@
+
+//register A select from instruction or outM
+// sel = not(aorc)
+CHIP ControlOfMuxAorOutM{
+	IN   aorc;
+	OUT  sel;
+	PARTS:
+	Not(in=aorc, out=sel);
+}

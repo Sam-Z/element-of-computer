@@ -1,0 +1,10 @@
+
+//register A select from instruction or outM
+//if aorc == 1 select instruction
+//   aorc == 0 select outM
+CHIP ControlOfMuxAorOutM{
+	IN   aorc;
+	OUT  sel;
+	PARTS:
+	And(a=aorc, b=true, out=sel);
+}

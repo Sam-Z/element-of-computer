@@ -1,0 +1,12 @@
+// control of ALU
+CHIP ControlOfALU{
+	IN  c[6];
+    OUT zx, nx, zy, ny, f, no;
+	PARTS:
+	And(a = c[0],b = true, out = zx );
+	And(a = c[1],b = true, out = nx );
+	And(a = c[2],b = true, out = zy );
+	And(a = c[3],b = true, out = ny );
+	And(a = c[4],b = true, out = f );
+	And(a = c[5],b = true, out = no );  
+}
